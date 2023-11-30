@@ -1,0 +1,11 @@
+.title {
+  font-family: sans-serif;
+  text-align: center;
+}
+.subTitle {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+p {
+  font-family: "Times New Roman", Times, serif;
+}
