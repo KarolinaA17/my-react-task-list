@@ -5,12 +5,13 @@
   font-size: 46px;
   text-align: center;
   letter-spacing: -0.02em;
-  color: #000000;
+  color: #8504a5;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .subTitle {
+  color: #ab16e6;
   text-align: center;
   font-family: "Quicksand";
   font-style: normal;
@@ -27,8 +28,8 @@
   font-style: normal;
   font-weight: bold;
   font-size: 35px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   grid-column: span 3;
 }
 
