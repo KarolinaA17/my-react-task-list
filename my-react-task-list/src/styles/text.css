@@ -23,14 +23,13 @@
 
 .sTitle {
   text-align: center;
-  margin-top: auto;
   font-family: "Carizo";
   font-style: normal;
-  font-weight: 40;
+  font-weight: bold;
   font-size: 35px;
-  text-align: center;
   margin-top: 8px;
   margin-bottom: 8px;
+  grid-column: span 3;
 }
 
 .item {
