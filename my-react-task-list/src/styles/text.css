@@ -1,11 +1,56 @@
 .title {
-  font-family: sans-serif;
+  font-family: "Poetsen One";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 46px;
   text-align: center;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
+
 .subTitle {
-  font-family: "Courier New", Courier, monospace;
   text-align: center;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 40;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-p {
-  font-family: "Times New Roman", Times, serif;
+
+.sTitle {
+  text-align: center;
+  margin-top: auto;
+  font-family: "Carizo";
+  font-style: normal;
+  font-weight: 40;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.item {
+  font-family: "cream DEMO";
+  font-style: bold;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.dItem {
+  font-family: "comfortaa";
+  font-style: bold;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #030303;
 }
