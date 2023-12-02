@@ -6,16 +6,9 @@ import UpdateButton from "./buttons/update";
 
 export default function TaskList(props) {
   const { id, title, description, priority } = props.taskProp;
-
-  // Estado para controlar si la tarea está completada o no
   const [completed, setCompleted] = useState(props.taskProp.status);
-
-  // Función para manejar el clic en el botón de completado
   const handleCompleteClick = () => {
-    // Cambiar el estado de completado al contrario
     setCompleted(!completed);
-
-    // Actualizar el estado 'status' al contrario
     props.onStatusChange(id, !completed);
   };
 
