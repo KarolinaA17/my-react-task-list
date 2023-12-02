@@ -6,18 +6,16 @@ import "../../styles/cardTask.css";
 
 export default function CompleteButton({ completed, onToggleComplete }) {
   const handleCompleteClick = () => {
-    onToggleComplete();
+    if (onToggleComplete) {
+      onToggleComplete();
+    }
   };
   return (
     <button
       className={`completeButton ${completed ? "completed" : "notCompleted"}`}
-      onClick={onClick}
+      onClick={handleCompleteClick}
     >
       <FontAwesomeIcon icon={completed ? faCheckCircle : faCircle} />
     </button>
   );
 }
-const handleCompleteClick = () => {
-  setCompleted(!completed);
-  props.onStatusChange(!completed);
-};
