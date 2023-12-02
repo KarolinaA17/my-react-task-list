@@ -4,7 +4,10 @@ import { faCheckCircle, faCircle } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/stylebuttons.css";
 import "../../styles/cardTask.css";
 
-export default function CompleteButton({ completed, onClick }) {
+export default function CompleteButton({ completed, onToggleComplete }) {
+  const handleCompleteClick = () => {
+    onToggleComplete();
+  };
   return (
     <button
       className={`completeButton ${completed ? "completed" : "notCompleted"}`}
@@ -14,3 +17,7 @@ export default function CompleteButton({ completed, onClick }) {
     </button>
   );
 }
+const handleCompleteClick = () => {
+  setCompleted(!completed);
+  props.onStatusChange(!completed);
+};

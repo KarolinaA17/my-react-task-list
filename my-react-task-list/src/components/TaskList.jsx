@@ -5,11 +5,11 @@ import CompleteButton from "./buttons/complete";
 import UpdateButton from "./buttons/update";
 
 export default function TaskList(props) {
-  const { id, title, description, priority } = props.taskProp;
+  const { title, description, priority } = props.taskProp;
   const [completed, setCompleted] = useState(props.taskProp.status);
   const handleCompleteClick = () => {
     setCompleted(!completed);
-    props.onStatusChange(id, !completed);
+    props.onStatusChange(!completed);
   };
 
   return (
@@ -44,7 +44,7 @@ export default function TaskList(props) {
           <div>
             <CompleteButton
               completed={completed}
-              onClick={handleCompleteClick}
+              onToggleComplete={handleCompleteClick}
             />
           </div>
         </div>
