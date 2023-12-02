@@ -4,11 +4,16 @@ import { faCheckCircle, faCircle } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/stylebuttons.css";
 import "../../styles/cardTask.css";
 
-export default function CompleteButton({ completed, onClick }) {
+export default function CompleteButton({ completed, onToggleComplete }) {
+  const handleCompleteClick = () => {
+    if (onToggleComplete) {
+      onToggleComplete();
+    }
+  };
   return (
     <button
       className={`completeButton ${completed ? "completed" : "notCompleted"}`}
-      onClick={onClick}
+      onClick={handleCompleteClick}
     >
       <FontAwesomeIcon icon={completed ? faCheckCircle : faCircle} />
     </button>
