@@ -42,7 +42,6 @@ export default function TaskList(props) {
             <UpdateButton />
           </div>
           <div>
-            {/* Pasar el estado y la función de clic como propiedades */}
             <CompleteButton
               completed={completed}
               onClick={handleCompleteClick}
