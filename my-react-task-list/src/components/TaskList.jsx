@@ -12,49 +12,41 @@ export default function TaskList(props) {
   };
   return (
     <article>
-      {" "}
       <div className={`taskCard ${completed ? "completed" : "notCompleted"}`}>
-        {" "}
-        <h2 className="sTitle">{title}</h2>{" "}
+        <h2 className="sTitle">{title}</h2>
         <div
           className={`columnaLeft ${
             completed ? "completedItem" : "notCompletedItem"
           }`}
         >
-          {" "}
-          <div className="item">Description:</div>{" "}
-          <div className="item">Priority:</div>{" "}
-          <div className="item">Status:</div>{" "}
-        </div>{" "}
+          <div className="item">Description:</div>
+          <div className="item">Priority:</div>
+          <div className="item">Status:</div>
+        </div>
         <div
           className={`columnaCenter ${
             completed ? "completedDItem" : "notCompletedDItem"
           }`}
         >
-          {" "}
-          <div className="dItem">{description}</div>{" "}
-          <div className="dItem">{priority}</div>{" "}
-          <div className="dItem">{completed ? "True" : "False"}</div>{" "}
-        </div>{" "}
+          <div className="dItem">{description}</div>
+          <div className="dItem">{priority}</div>
+          <div className="dItem">{completed ? "True" : "False"}</div>
+        </div>
         <div className="columnaRight">
-          {" "}
           <div>
-            {" "}
-            <DeleteButton />{" "}
-          </div>{" "}
+            <DeleteButton />
+          </div>
           <div>
-            {" "}
-            <UpdateButton />{" "}
-          </div>{" "}
+            <UpdateButton />
+          </div>
           <div>
-            {" "}
             <CompleteButton
               completed={completed}
               onToggleComplete={handleCompleteClick}
-            />{" "}
-          </div>{" "}
-        </div>{" "}
-      </div>{" "}
+            />
+          </div>
+        </div>
+      </div>
     </article>
   );
 }
