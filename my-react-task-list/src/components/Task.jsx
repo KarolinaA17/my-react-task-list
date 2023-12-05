@@ -40,14 +40,13 @@ export default function Task() {
       status: true,
     },
   ]);
-  function deleteTasks() {
-    const newTasks = tasks.pop();
-    setTasks(newTasks);
+  function deleteTask(taskToDelete) {
+    setTasks(tasks.filter((task) => task !== taskToDelete));
   }
   return (
     <>
       {tasks?.map((task, index) => (
-        <TaskList taskProp={task} setTasks={deleteTasks} key={index} />
+        <TaskList taskProp={task} deleteTask={deleteTask} key={index} />
       ))}
     </>
   );

@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function DeleteButton(props) {
-  function handlenClick() {
-    props.setTasks();
+  function handleClick() {
+    props.deleteTask(props.taskToDelete);
   }
 
   return (
-    <button className="deleteButton" onClick={handlenClick}>
+    <button className="deleteButton" onClick={handleClick}>
       <FontAwesomeIcon icon={faTrashAlt} />
     </button>
   );

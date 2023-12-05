@@ -4,6 +4,7 @@ import DeleteButton from "./buttons/delete";
 import CompleteButton from "./buttons/complete";
 import UpdateButton from "./buttons/update";
 export default function TaskList(props) {
+  const { taskProp, deleteTask } = props;
   const { title, description, priority } = props.taskProp;
   const [completed, setCompleted] = useState(props.taskProp.status);
   const handleCompleteClick = () => {
@@ -34,7 +35,7 @@ export default function TaskList(props) {
         </div>
         <div className="columnaRight">
           <div>
-            <DeleteButton setTasks={props.setTasks} />
+            <DeleteButton deleteTask={() => deleteTask(taskProp)} />
           </div>
           <div>
             <UpdateButton />
