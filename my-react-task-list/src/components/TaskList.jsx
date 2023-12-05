@@ -34,7 +34,7 @@ export default function TaskList(props) {
         </div>
         <div className="columnaRight">
           <div>
-            <DeleteButton />
+            <DeleteButton setTasks={props.setTasks} />
           </div>
           <div>
             <UpdateButton />

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import TaskList from "./TaskList";
 
 export default function Task() {
-  const tasks = [
+  const [tasks, setTasks] = useState([
     {
       title: "Do the housekeeping",
       description: "Clean the kitchen and bathrooms",
@@ -39,12 +39,15 @@ export default function Task() {
       priority: "Low",
       status: true,
     },
-  ];
-
+  ]);
+  function deleteTasks() {
+    const newTasks = tasks.pop();
+    setTasks(newTasks);
+  }
   return (
     <>
-      {tasks.map((task, index) => (
-        <TaskList taskProp={task} key={index} />
+      {tasks?.map((task, index) => (
+        <TaskList taskProp={task} setTasks={deleteTasks} key={index} />
       ))}
     </>
   );
