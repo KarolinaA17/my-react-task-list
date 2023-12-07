@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/stylebuttons.css";
 
-export default function UpdateButton() {
+export default function UpdateButton({ onClick }) {
   return (
-    <button className="updateButton">
+    <button className="updateButton" onClick={onClick}>
       <FontAwesomeIcon icon={faPen} />
     </button>
   );
