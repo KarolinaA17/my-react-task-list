@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/cardTask.css";
 import DeleteButton from "./buttons/delete";
 import CompleteButton from "./buttons/complete";
@@ -6,33 +6,44 @@ import UpdateButton from "./buttons/update";
 import TaskForm from "./TaskForm";
 
 export default function TaskList(props) {
-  const { taskProp, deleteTask, updateTask, setTaskToUpdate } = props;
-  const { title, description, priority } = taskProp;
-  const [completed, setCompleted] = useState(taskProp.status);
-  const [isEditing, setIsEditing] = useState(false);
+  const {
+    taskProp,
+    deleteTask,
+    updateTask,
+    setTaskToUpdate,
+    setIsEditing,
+    isEditing,
+    index,
+  } = props;
+  const { id, title, description, priority, status } = taskProp;
+  const [completed, setCompleted] = useState(status);
 
   const handleUpdateClick = () => {
     console.log("Task to update:", { ...taskProp });
     setTaskToUpdate(taskProp);
-    setIsEditing(true);
+    setIsEditing(index);
   };
 
   const handleCompleteClick = () => {
     setCompleted(!completed);
+    const updatedTask = { ...taskProp, status: !completed };
+    updateTask(updatedTask);
+  };
+
+  useEffect(() => {
+    setCompleted(status);
+  }, [status]);
+
+  const handleDeleteClick = () => {
+    deleteTask(taskProp);
   };
 
   return (
     <article>
       <div className={`taskCard ${completed ? "completed" : "notCompleted"}`}>
-        {isEditing && (
-          <TaskForm
-            taskToUpdate={taskProp}
-            updateTask={updateTask}
-            onCancel={() => setIsEditing(false)}
-          />
-        )}
         <>
           <h2 className="sTitle">{title}</h2>
+
           <div
             className={`columnaLeft ${
               completed ? "completedItem" : "notCompletedItem"
@@ -53,7 +64,7 @@ export default function TaskList(props) {
           </div>
           <div className="columnaRight">
             <div>
-              <DeleteButton deleteTask={() => deleteTask(taskProp)} />
+              <DeleteButton deleteTask={handleDeleteClick} />
             </div>
             <div>
               <UpdateButton onClick={handleUpdateClick} />
@@ -66,6 +77,15 @@ export default function TaskList(props) {
             </div>
           </div>
         </>
+
+        {isEditing && (
+          <TaskForm
+            taskToUpdate={taskProp}
+            updateTask={updateTask}
+            onCancel={() => setIsEditing(false)}
+            style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
+          />
+        )}
       </div>
     </article>
   );
