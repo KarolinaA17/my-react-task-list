@@ -13,20 +13,18 @@ export default function TaskList(props) {
     setTaskToUpdate,
     setIsEditing,
     isEditing,
-    index,
   } = props;
   const { id, title, description, priority, status } = taskProp;
   const [completed, setCompleted] = useState(status);
 
   const handleUpdateClick = () => {
-    console.log("Task to update:", { ...taskProp });
     setTaskToUpdate(taskProp);
-    setIsEditing(index);
+    setIsEditing(true);
   };
 
   const handleCompleteClick = () => {
-    setCompleted(!completed);
     const updatedTask = { ...taskProp, status: !completed };
+    setCompleted(!completed);
     updateTask(updatedTask);
   };
 
