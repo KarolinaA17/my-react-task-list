@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
-import UpdateForm from "./forms/updateForm";
+import TaskForm from "./forms/TaskForm";
 import { useTaskActions } from "./Hook/HookPersonalizado";
 
 export default function Task() {
@@ -49,17 +49,26 @@ export default function Task() {
     },
   ];
 
-  const { tasks, deleteTask, updateTask } = useTaskActions(initialTasks);
+  const { tasks, deleteTask, updateTask, createTask } =
+    useTaskActions(initialTasks);
 
   const [taskToUpdate, setTaskToUpdate] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [newTaskCounter, setNewTaskCounter] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+  const handleCreateTask = (newTask) => {
+    createTask({ ...newTask, id: `newTask-${newTaskCounter}` });
+    setNewTaskCounter((prevCounter) => prevCounter + 1);
+  };
+
   return (
     <>
+      <TaskForm onCreateTask={handleCreateTask} />
+
       {tasks?.map((task) => (
         <TaskList
           key={task.id}
@@ -67,15 +76,18 @@ export default function Task() {
           deleteTask={deleteTask}
           updateTask={updateTask}
           setTaskToUpdate={setTaskToUpdate}
-          setIsEditing={setIsEditing}
-          isEditing={isEditing && taskToUpdate?.id === task.id}
         />
       ))}
-      {taskToUpdate && isEditing && (
-        <UpdateForm
+
+      {taskToUpdate && (
+        <TaskForm
+          key={taskToUpdate.id}
           taskToUpdate={taskToUpdate}
           updateTask={updateTask}
-          onCancel={() => setIsEditing(false)}
+          onCancel={() => {
+            setTaskToUpdate(null);
+            setIsEditing(false);
+          }}
         />
       )}
     </>

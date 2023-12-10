@@ -7,15 +7,21 @@ export const useTaskActions = (initialTasks) => {
   });
 
   const updateTask = (updatedTask) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === updatedTask.id ? updatedTask : task
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+      )
     );
-    setTasks(updatedTasks);
   };
 
   const deleteTask = (taskToDelete) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskToDelete.id);
-    setTasks(updatedTasks);
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== taskToDelete.id)
+    );
+  };
+
+  const createTask = (newTask) => {
+    setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 
   useEffect(() => {
@@ -26,5 +32,6 @@ export const useTaskActions = (initialTasks) => {
     tasks,
     deleteTask,
     updateTask,
+    createTask,
   };
 };

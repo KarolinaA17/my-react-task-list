@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function updateForm({ taskToUpdate, updateTask, onCancel }) {
+export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
   const [editedTask, setEditedTask] = useState({ ...taskToUpdate });
 
   useEffect(() => {

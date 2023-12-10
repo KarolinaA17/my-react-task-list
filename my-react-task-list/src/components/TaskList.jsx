@@ -3,19 +3,13 @@ import "../styles/cardTask.css";
 import DeleteButton from "./buttons/delete";
 import CompleteButton from "./buttons/complete";
 import UpdateButton from "./buttons/update";
-import UpdateForm from "./UpdateForm";
+import UpdateForm from "./forms/UpdateForm";
 
 export default function TaskList(props) {
-  const {
-    taskProp,
-    deleteTask,
-    updateTask,
-    setTaskToUpdate,
-    setIsEditing,
-    isEditing,
-  } = props;
+  const { taskProp, deleteTask, updateTask, setTaskToUpdate } = props;
   const { id, title, description, priority, status } = taskProp;
   const [completed, setCompleted] = useState(status);
+  const [isEditing, setIsEditing] = useState(false); // Estado local para edición
 
   const handleUpdateClick = () => {
     setTaskToUpdate(taskProp);
@@ -37,7 +31,7 @@ export default function TaskList(props) {
   };
 
   return (
-    <article>
+    <article key={id}>
       <div className={`taskCard ${completed ? "completed" : "notCompleted"}`}>
         <>
           <h2 className="sTitle">{title}</h2>
