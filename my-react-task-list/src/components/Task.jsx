@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
-import UpdateForm from "./Forms/UpdateForm";
-import { useTaskActions } from "./hook/hookPersonalizado";
+import UpdateForm from "./forms/updateForm";
+import useTaskActions from "./hook/hookPersonalizado";
 
 export default function Task() {
   const initialTasks = [
