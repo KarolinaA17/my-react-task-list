@@ -9,7 +9,7 @@ export default function TaskList(props) {
   const { taskProp, deleteTask, updateTask, setTaskToUpdate } = props;
   const { id, title, description, priority, status } = taskProp;
   const [completed, setCompleted] = useState(status);
-  const [isEditing, setIsEditing] = useState(false); // Estado local para edición
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdateClick = () => {
     setTaskToUpdate(taskProp);

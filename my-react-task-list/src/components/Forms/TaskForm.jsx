@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "../../styles/taskForm.css";
+import "../../styles/textFormsCard.css";
 
 export default function TaskForm({ onCreateTask }) {
   const [taskTitle, setTaskTitle] = useState("");
@@ -30,35 +32,42 @@ export default function TaskForm({ onCreateTask }) {
 
   return (
     <div>
-      <h2>Create a New Task</h2>
-      <div>
-        <label>Title:</label>
-        <input
-          type="text"
-          value={taskTitle}
-          onChange={(e) => setTaskTitle(e.target.value)}
-        />
+      <div className="formCard">
+        <div className="formColumnLeft">
+          <label className="label">Title:</label>
+          <label className="label">Description:</label>
+          <label className="label">Priority:</label>
+        </div>
+        <div className="formColumnRight">
+          <div>
+            <input
+              type="text"
+              value={taskTitle}
+              onChange={(e) => setTaskTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <textarea
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
+            />
+          </div>
+          <div>
+            <select
+              value={taskPriority}
+              onChange={(e) => setTaskPriority(e.target.value)}
+            >
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div style={{ color: "red" }}>{error}</div>
+        </div>
       </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          value={taskDescription}
-          onChange={(e) => setTaskDescription(e.target.value)}
-        />
+      <div className="buttonContainer">
+        <button onClick={handleCreateTask}>Create Task</button>
       </div>
-      <div>
-        <label>Priority:</label>
-        <select
-          value={taskPriority}
-          onChange={(e) => setTaskPriority(e.target.value)}
-        >
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
-      </div>
-      <div style={{ color: "red" }}>{error}</div>
-      <button onClick={handleCreateTask}>Create Task</button>
     </div>
   );
 }
