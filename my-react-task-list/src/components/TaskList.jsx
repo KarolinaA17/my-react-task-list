@@ -3,7 +3,7 @@ import "../styles/cardTask.css";
 import DeleteButton from "./buttons/delete";
 import CompleteButton from "./buttons/complete";
 import UpdateButton from "./buttons/update";
-import TaskForm from "./TaskForm";
+import UpdateForm from "./UpdateForm";
 
 export default function TaskList(props) {
   const {
@@ -77,7 +77,7 @@ export default function TaskList(props) {
         </>
 
         {isEditing && (
-          <TaskForm
+          <UpdateForm
             taskToUpdate={taskProp}
             updateTask={updateTask}
             onCancel={() => setIsEditing(false)}

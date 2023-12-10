@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
-import TaskForm from "./TaskForm";
+import UpdateForm from "./Forms/UpdateForm";
 import { useTaskActions } from "./hook/hookPersonalizado";
 
 export default function Task() {
@@ -72,7 +72,7 @@ export default function Task() {
         />
       ))}
       {taskToUpdate && isEditing && (
-        <TaskForm
+        <UpdateForm
           taskToUpdate={taskToUpdate}
           updateTask={updateTask}
           onCancel={() => setIsEditing(false)}
