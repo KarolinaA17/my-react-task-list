@@ -40,19 +40,23 @@ export default function TaskForm({ onCreateTask }) {
           <label className="label">Priority:</label>
         </div>
         <div className="formColumnRight">
-          <div>
+          <div className="input">
             <input
               type="text"
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
-              className="inputField"
+              className="input"
+              placeholder="Enter Text"
+              required
             />
           </div>
-          <div>
+          <div className="input">
             <textarea
               value={taskDescription}
               onChange={(e) => setTaskDescription(e.target.value)}
-              className="inputField"
+              className="input"
+              placeholder="Enter Text"
+              required
             />
           </div>
           <div>

@@ -25,3 +25,9 @@
   justify-content: center;
   align-items: center;
 }
+.input {
+  text-align: justify;
+  font-size: 20px;
+  font-family: "comfortaa";
+  align-items: center;
+}

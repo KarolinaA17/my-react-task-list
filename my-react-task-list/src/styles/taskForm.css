@@ -31,14 +31,34 @@
   align-items: center;
 }
 
-.formColumnRight {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-  padding: 5px;
-  border-radius: 8px;
-  margin-bottom: 5px;
+.formColumnRight .input {
+  width: 270px;
+  height: 30px;
+  margin-bottom: 10px;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.formColumnRight .input:valid {
+  border-color: #201a7c;
+  color: #000000;
+  box-shadow: 2px 2px 8px 1px #201a7c;
+}
+
+.formColumnRight .input:invalid {
+  border-color: #6967ff;
+  color: #000000;
+  box-shadow: 2px 2px 8px 1px #6967ff;
+}
+
+.formColumnRight .text {
+  margin-top: 10px;
+  color: black;
 }
 
 .inputField {
