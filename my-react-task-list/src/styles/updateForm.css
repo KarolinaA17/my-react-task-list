@@ -63,7 +63,7 @@
   opacity: 0.5;
 }
 
-.selectField {
+.selectFieldUpdate {
   width: 150px;
   height: 30px;
   margin-bottom: 5px;
@@ -78,4 +78,35 @@
   align-items: center;
   margin-top: -20px;
   margin-bottom: -20px;
+}
+
+.selectFieldUpdate {
+  width: 435px;
+  height: 30px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.selectFieldUpdate:valid {
+  border-color: #201a7c;
+  color: #000000;
+  box-shadow: 2px 2px 8px 1px #201a7c;
+}
+
+.selectFieldUpdate:invalid {
+  border-color: #6967ff;
+  color: #000000;
+  box-shadow: 2px 2px 8px 1px #6967ff;
+}
+
+.selectFieldUpdate option {
+  background-color: #fff;
+  color: #000;
+}
+
+.selectFieldUpdate option:checked {
+  background-color: #201a7c;
+  color: #fff;
 }

@@ -6,9 +6,11 @@ import "../../styles/stylesButtons/cancelForm.css";
 
 export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
   const [editedTask, setEditedTask] = useState({ ...taskToUpdate });
+  const [taskPriority, setTaskPriority] = useState(editedTask.priority);
 
   useEffect(() => {
     setEditedTask(taskToUpdate);
+    setTaskPriority(taskToUpdate.priority);
   }, [taskToUpdate]);
 
   const handleInputChange = (e, field) => {
@@ -17,11 +19,22 @@ export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
       [field]: e.target.value,
     }));
   };
+  const handlePriorityChange = (e) => {
+    setTaskPriority(e.target.value);
+  };
 
   const handleUpdateClick = () => {
-    console.log("Update button clicked");
-    console.log("Current editedTask:", editedTask);
-    updateTask(editedTask);
+    if (editedTask.title.length < 5 || editedTask.description.length < 5) {
+      alert("El título y la descripción deben tener al menos 5 caracteres.");
+      return;
+    }
+
+    const updatedTask = {
+      ...editedTask,
+      priority: taskPriority,
+    };
+
+    updateTask(updatedTask);
     onCancel();
   };
 
@@ -53,13 +66,15 @@ export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
           value={editedTask.description}
           onChange={(e) => handleInputChange(e, "description")}
         />
-        <input
-          className="inputFieldUpdate"
-          type="text"
-          id="priority"
-          value={editedTask.priority}
-          onChange={(e) => handleInputChange(e, "priority")}
-        />
+        <select
+          value={taskPriority}
+          onChange={handlePriorityChange}
+          className="selectFieldUpdate"
+        >
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
       </div>
       <div className="formButtons">
         <button className="updateForm" onClick={handleUpdateClick}>

@@ -10,8 +10,9 @@ export default function TaskForm({ onCreateTask }) {
   const [error, setError] = useState("");
 
   const handleCreateTask = () => {
-    if (taskTitle.length < 3) {
-      setError("El título debe tener al menos 3 caracteres.");
+    if (taskTitle.length < 5 || taskDescription.length < 5) {
+      setError("El título y la descripción deben tener al menos 5 caracteres.");
+      alert("El título y la descripción deben tener al menos 5 caracteres.");
       return;
     }
 

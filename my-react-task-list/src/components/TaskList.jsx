@@ -11,11 +11,6 @@ export default function TaskList(props) {
   const [completed, setCompleted] = useState(status);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleUpdateClick = () => {
-    setTaskToUpdate(taskProp);
-    setIsEditing(true);
-  };
-
   const handleCompleteClick = () => {
     const updatedTask = { ...taskProp, status: !completed };
     setCompleted(!completed);
@@ -28,6 +23,11 @@ export default function TaskList(props) {
 
   const handleDeleteClick = () => {
     deleteTask(taskProp);
+  };
+
+  const handleUpdateClick = () => {
+    setTaskToUpdate(taskProp);
+    setIsEditing(true);
   };
 
   const handleSaveUpdate = (updatedTask) => {

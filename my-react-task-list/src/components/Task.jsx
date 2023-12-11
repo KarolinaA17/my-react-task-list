@@ -67,7 +67,15 @@ export default function Task() {
 
   return (
     <>
-      <TaskForm onCreateTask={handleCreateTask} />
+      <TaskForm
+        onCreateTask={handleCreateTask}
+        onUpdateTask={updateTask}
+        taskToUpdate={taskToUpdate}
+        onCancel={() => {
+          setTaskToUpdate(null);
+          setIsEditing(false);
+        }}
+      />
 
       {tasks?.map((task) => (
         <TaskList
@@ -78,18 +86,6 @@ export default function Task() {
           setTaskToUpdate={setTaskToUpdate}
         />
       ))}
-
-      {taskToUpdate && (
-        <TaskForm
-          key={taskToUpdate.id}
-          taskToUpdate={taskToUpdate}
-          updateTask={updateTask}
-          onCancel={() => {
-            setTaskToUpdate(null);
-            setIsEditing(false);
-          }}
-        />
-      )}
     </>
   );
 }

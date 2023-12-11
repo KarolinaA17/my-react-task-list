@@ -7,6 +7,7 @@ export const useTaskActions = (initialTasks) => {
   });
 
   const updateTask = (updatedTask) => {
+    console.log("Updating task:", updatedTask);
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === updatedTask.id ? { ...task, ...updatedTask } : task
@@ -15,12 +16,14 @@ export const useTaskActions = (initialTasks) => {
   };
 
   const deleteTask = (taskToDelete) => {
+    console.log("Deleting task:", taskToDelete);
     setTasks((prevTasks) =>
       prevTasks.filter((task) => task.id !== taskToDelete.id)
     );
   };
 
   const createTask = (newTask) => {
+    console.log("Creating task:", newTask);
     setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 

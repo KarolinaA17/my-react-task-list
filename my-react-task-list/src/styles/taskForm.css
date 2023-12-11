@@ -31,8 +31,9 @@
   align-items: center;
 }
 
-.formColumnRight .input {
-  width: 270px;
+.formColumnRight .input,
+.formColumnRight select {
+  width: 280px;
   height: 30px;
   margin-bottom: 10px;
   outline: none;
@@ -42,23 +43,31 @@
   border-bottom-width: 2px;
   transition: all 0.3s ease;
   position: relative;
+  color: black;
 }
 
-.formColumnRight .input:valid {
+.formColumnRight .input:valid,
+.formColumnRight select:valid {
   border-color: #201a7c;
   color: #000000;
   box-shadow: 2px 2px 8px 1px #201a7c;
 }
 
-.formColumnRight .input:invalid {
+.formColumnRight .input:invalid,
+.formColumnRight select:invalid {
   border-color: #6967ff;
   color: #000000;
   box-shadow: 2px 2px 8px 1px #6967ff;
 }
 
-.formColumnRight .text {
-  margin-top: 10px;
-  color: black;
+.formColumnRight option {
+  background-color: #fff;
+  color: #000;
+}
+
+.formColumnRight option:checked {
+  background-color: #201a7c;
+  color: #fff;
 }
 
 .inputField {
