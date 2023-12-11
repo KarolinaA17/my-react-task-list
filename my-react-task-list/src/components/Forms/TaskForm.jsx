@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/taskForm.css";
 import "../../styles/textFormsCard.css";
+import "../../styles/stylesButtons/createButton.css";
 
 export default function TaskForm({ onCreateTask }) {
   const [taskTitle, setTaskTitle] = useState("");
@@ -44,29 +45,33 @@ export default function TaskForm({ onCreateTask }) {
               type="text"
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
+              className="inputField"
             />
           </div>
           <div>
             <textarea
               value={taskDescription}
               onChange={(e) => setTaskDescription(e.target.value)}
+              className="inputField"
             />
           </div>
           <div>
             <select
               value={taskPriority}
               onChange={(e) => setTaskPriority(e.target.value)}
+              className="selectField"
             >
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
           </div>
-          <div style={{ color: "red" }}>{error}</div>
         </div>
       </div>
       <div className="buttonContainer">
-        <button onClick={handleCreateTask}>Create Task</button>
+        <button className="buttonCreate" onClick={handleCreateTask}>
+          Create Task
+        </button>
       </div>
     </div>
   );

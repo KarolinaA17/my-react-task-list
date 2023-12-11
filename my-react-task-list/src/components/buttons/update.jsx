@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/stylebuttons.css";
+import "../../styles/stylesButtons/updateButton.css";
 
 export default function UpdateButton({ onClick }) {
   return (

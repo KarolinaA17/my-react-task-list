@@ -1,5 +1,5 @@
 .taskCard {
-  width: 600px;
+  width: 620px;
   margin: 30px auto;
   padding: 15px;
   display: grid;
@@ -16,13 +16,17 @@
   align-items: center;
 }
 
+.columnaRight > div {
+  margin-bottom: 15px;
+}
+
 .item {
   width: 100px;
   height: 40px;
   border-radius: 8px;
   padding: 5px;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .dItem {
@@ -31,7 +35,7 @@
   border-radius: 8px;
   padding: 5px;
   box-sizing: border-box;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 
   display: flex;
   flex-direction: column;

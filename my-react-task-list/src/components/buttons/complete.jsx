@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faCircle } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/stylebuttons.css";
+import "../../styles/stylesButtons/completeButton.css";
 import "../../styles/cardTask.css";
 
 export default function CompleteButton({ completed, onToggleComplete }) {
@@ -10,12 +10,18 @@ export default function CompleteButton({ completed, onToggleComplete }) {
       onToggleComplete();
     }
   };
+
   return (
-    <button
-      className={`completeButton ${completed ? "completed" : "notCompleted"}`}
-      onClick={handleCompleteClick}
-    >
-      <FontAwesomeIcon icon={completed ? faCheckCircle : faCircle} />
-    </button>
+    <label className={`container ${completed ? "completed" : "notCompleted"}`}>
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={handleCompleteClick}
+        className="hidden-checkbox"
+      />
+      <div className="checkmark">
+        <FontAwesomeIcon icon={completed ? faCheckCircle : faCircle} />
+      </div>
+    </label>
   );
 }
