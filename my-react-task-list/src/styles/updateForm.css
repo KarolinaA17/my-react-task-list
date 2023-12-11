@@ -1,0 +1,78 @@
+.formCardUpdate {
+  width: 620px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 120px 450px;
+  gap: 15px;
+  align-items: center;
+  border-radius: 10px;
+  margin: 15px;
+}
+.formCardUpdate {
+  width: 620px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 120px 450px;
+  grid-template-rows: auto;
+  gap: 10px;
+  align-items: center;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.labelUpdate {
+  width: 140px;
+  height: 35px;
+  background: #118e9e;
+  border-radius: 8px;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  text-align: center;
+  align-items: center;
+}
+
+.columnLeftUpdate {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.columnRightUpdate {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 8px;
+  margin-left: 15px;
+}
+
+.inputFieldUpdate {
+  width: 415px;
+  height: 23px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.selectField {
+  width: 150px;
+  height: 30px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
+
+.formButtons {
+  width: 570px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}

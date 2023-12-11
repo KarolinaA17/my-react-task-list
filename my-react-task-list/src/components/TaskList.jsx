@@ -30,54 +30,62 @@ export default function TaskList(props) {
     deleteTask(taskProp);
   };
 
+  const handleSaveUpdate = (updatedTask) => {
+    updateTask(updatedTask);
+    setIsEditing(false);
+  };
+
   return (
     <article key={id}>
       <div className={`taskCard ${completed ? "completed" : "notCompleted"}`}>
         <>
-          <h2 className="sTitle">{title}</h2>
+          {!isEditing ? (
+            <>
+              <h2 className="sTitle">{title}</h2>
 
-          <div
-            className={`columnaLeft ${
-              completed ? "completedItem" : "notCompletedItem"
-            }`}
-          >
-            <div className="item">Description:</div>
-            <div className="item">Priority:</div>
-            <div className="item">Status:</div>
-          </div>
-          <div
-            className={`columnaCenter ${
-              completed ? "completedDItem" : "notCompletedDItem"
-            }`}
-          >
-            <div className="dItem">{description}</div>
-            <div className="dItem">{priority}</div>
-            <div className="dItem">{completed ? "True" : "False"}</div>
-          </div>
-          <div className="columnaRight">
-            <div>
-              <DeleteButton deleteTask={handleDeleteClick} />
-            </div>
-            <div>
-              <UpdateButton onClick={handleUpdateClick} />
-            </div>
-            <div>
-              <CompleteButton
-                completed={completed}
-                onToggleComplete={handleCompleteClick}
-              />
-            </div>
-          </div>
+              <div
+                className={`columnaLeft ${
+                  completed ? "completedItem" : "notCompletedItem"
+                }`}
+              >
+                <div className="item">Description:</div>
+                <div className="item">Priority:</div>
+                <div className="item">Status:</div>
+              </div>
+              <div
+                className={`columnaCenter ${
+                  completed ? "completedDItem" : "notCompletedDItem"
+                }`}
+              >
+                <div className="dItem">{description}</div>
+                <div className="dItem">{priority}</div>
+                <div className="dItem">{completed ? "True" : "False"}</div>
+              </div>
+              <div className="columnaRight">
+                <div>
+                  <DeleteButton deleteTask={handleDeleteClick} />
+                </div>
+                <div>
+                  <UpdateButton onClick={handleUpdateClick} />
+                </div>
+                <div>
+                  <CompleteButton
+                    completed={completed}
+                    onToggleComplete={handleCompleteClick}
+                  />
+                </div>
+              </div>
+            </>
+          ) : null}
+
+          {isEditing && (
+            <UpdateForm
+              taskToUpdate={taskProp}
+              updateTask={handleSaveUpdate}
+              onCancel={() => setIsEditing(false)}
+            />
+          )}
         </>
-
-        {isEditing && (
-          <UpdateForm
-            taskToUpdate={taskProp}
-            updateTask={updateTask}
-            onCancel={() => setIsEditing(false)}
-            style={{ position: "absolute", top: 0, left: 0, zIndex: 1 }}
-          />
-        )}
       </div>
     </article>
   );

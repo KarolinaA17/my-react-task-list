@@ -10,6 +10,8 @@
   cursor: pointer;
   transition-duration: 0.3s;
   overflow: hidden;
+  margin-top: 5px;
+  margin-left: 120px;
 }
 
 .IconContainer {
