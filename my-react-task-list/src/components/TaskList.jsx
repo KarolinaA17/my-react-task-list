@@ -7,19 +7,26 @@ import UpdateForm from "./forms/UpdateForm";
 
 export default function TaskList(props) {
   const { taskProp, deleteTask, updateTask, setTaskToUpdate } = props;
-  const { id, title, description, priority, status } = taskProp;
+  const { id, title, description, priority, status, category } = taskProp;
   const [completed, setCompleted] = useState(status);
   const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    setCompleted(status);
+  }, [status]);
+
+  useEffect(() => {
+    console.log("TaskList Component Rendered");
+    console.log("TaskProp:", taskProp);
+    console.log("Category:", category);
+    console.log("Completed:", completed);
+  }, [taskProp, category, completed]);
 
   const handleCompleteClick = () => {
     const updatedTask = { ...taskProp, status: !completed };
     setCompleted(!completed);
     updateTask(updatedTask);
   };
-
-  useEffect(() => {
-    setCompleted(status);
-  }, [status]);
 
   const handleDeleteClick = () => {
     deleteTask(taskProp);
@@ -34,6 +41,17 @@ export default function TaskList(props) {
     updateTask(updatedTask);
     setIsEditing(false);
   };
+
+  if (props.selectedCategory && category !== props.selectedCategory) {
+    return null;
+  }
+
+  useEffect(() => {
+    console.log("TaskList Component Rendered");
+    console.log("TaskProp:", taskProp);
+    console.log("Category:", category);
+    console.log("Completed:", completed);
+  }, [taskProp, category, completed]);
 
   return (
     <article key={id}>

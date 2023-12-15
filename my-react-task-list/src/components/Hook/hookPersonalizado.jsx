@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
-export const useTaskActions = (initialTasks) => {
+export const useTaskActions = (initialTasks, initialCategory = null) => {
   const [tasks, setTasks] = useState(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks"));
     return storedTasks ? storedTasks : initialTasks;
   });
+  const [category, setCategory] = useState(initialCategory);
 
   const updateTask = (updatedTask) => {
     console.log("Updating task:", updatedTask);
@@ -31,10 +32,17 @@ export const useTaskActions = (initialTasks) => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+  useEffect(() => {
+    setCategory(initialCategory);
+  }, [initialCategory]);
+
   return {
-    tasks,
+    tasks: category
+      ? tasks.filter((task) => task.Category === category)
+      : tasks,
     deleteTask,
     updateTask,
     createTask,
+    setCategory,
   };
 };

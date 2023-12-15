@@ -3,7 +3,9 @@ import TaskList from "./TaskList";
 import TaskForm from "./forms/TaskForm";
 import { useTaskActions } from "./Hook/HookPersonalizado";
 
-export default function Task() {
+export default function Task({ selectedCategory, onCategoryChange }) {
+  console.log("Selected Category in Task Component:", selectedCategory);
+
   const initialTasks = [
     {
       id: 1,
@@ -11,6 +13,7 @@ export default function Task() {
       description: "Clean the kitchen and bathrooms",
       priority: "High",
       status: true,
+      Category: "Housework",
     },
     {
       id: 2,
@@ -18,6 +21,7 @@ export default function Task() {
       description: "Separate white clothes from colored clothes",
       priority: "Medium",
       status: false,
+      Category: "Housework",
     },
     {
       id: 3,
@@ -25,6 +29,7 @@ export default function Task() {
       description: "Do the Math and Naturals homework",
       priority: "Medium",
       status: false,
+      Category: "Study Tasks",
     },
     {
       id: 4,
@@ -32,6 +37,7 @@ export default function Task() {
       description: "Social Notes for evaluation",
       priority: "High",
       status: true,
+      Category: "Study Tasks",
     },
     {
       id: 5,
@@ -39,6 +45,7 @@ export default function Task() {
       description: "Report presentation and graphics",
       priority: "Low",
       status: true,
+      Category: "Job Tasks",
     },
     {
       id: 6,
@@ -46,23 +53,44 @@ export default function Task() {
       description: "expense and sales reports",
       priority: "Low",
       status: true,
+      Category: "Job Tasks",
     },
   ];
 
   const { tasks, deleteTask, updateTask, createTask } =
     useTaskActions(initialTasks);
-
-  const [taskToUpdate, setTaskToUpdate] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [newTaskCounter, setNewTaskCounter] = useState(0);
+  const [newTaskCounter, setNewTaskCounter] = useState(initialTasks.length);
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+  useEffect(() => {
+    console.log("Setting filteredTasks:", tasks);
+    setFilteredTasks(
+      selectedCategory
+        ? tasks.filter(
+            (task) =>
+              task.Category &&
+              selectedCategory &&
+              task.Category.toLowerCase() === selectedCategory.toLowerCase()
+          )
+        : tasks
+    );
+  }, [selectedCategory, tasks]);
+
   const handleCreateTask = (newTask) => {
-    createTask({ ...newTask, id: `newTask-${newTaskCounter}` });
+    createTask({
+      ...newTask,
+      id: newTaskCounter,
+    });
     setNewTaskCounter((prevCounter) => prevCounter + 1);
+  };
+
+  const handleCategoryChange = (Category) => {
+    console.log(`Categoría seleccionada: ${Category}`);
+    onCategoryChange(category);
   };
 
   return (
@@ -70,20 +98,15 @@ export default function Task() {
       <TaskForm
         onCreateTask={handleCreateTask}
         onUpdateTask={updateTask}
-        taskToUpdate={taskToUpdate}
-        onCancel={() => {
-          setTaskToUpdate(null);
-          setIsEditing(false);
-        }}
+        onCancel={() => setTaskToUpdate(null)}
       />
-
-      {tasks?.map((task) => (
+      {filteredTasks.map((task) => (
         <TaskList
           key={task.id}
           taskProp={task}
           deleteTask={deleteTask}
           updateTask={updateTask}
-          setTaskToUpdate={setTaskToUpdate}
+          onCategoryChange={handleCategoryChange}
         />
       ))}
     </>
