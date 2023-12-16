@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import Header from "./components/Header";
 import DeleteLocalStorage from "./components/DeleteLocalStorage";
 import Menu from "./components/menu";
@@ -13,7 +14,8 @@ const Main = () => {
   };
 
   return (
-    <React.StrictMode>
+    <ChakraProvider>
+      <ColorModeScript initialColorMode="light" />
       <div>
         <Menu onCategoryChange={handleCategoryChange} />
         <Header />
@@ -23,7 +25,7 @@ const Main = () => {
           onCategoryChange={handleCategoryChange}
         />
       </div>
-    </React.StrictMode>
+    </ChakraProvider>
   );
 };
 

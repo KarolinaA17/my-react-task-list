@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Button, Icon } from "@chakra-ui/react";
-import { FiUser, FiHome, FiBriefcase, FiBook, FiBell } from "react-icons/fi";
+import { Box, Button, Icon, useColorMode, Switch } from "@chakra-ui/react";
+import { FiUser, FiHome, FiBriefcase, FiBook } from "react-icons/fi";
 
 const Menu = ({ onCategoryChange }) => {
+  const { toggleColorMode } = useColorMode();
+
   const menuItems = [
     { icon: FiUser, label: "My To Do List" },
     { icon: FiHome, label: "Housework" },
@@ -22,6 +24,7 @@ const Menu = ({ onCategoryChange }) => {
       display="flex"
       flexDirection="row"
       justifyContent="flex-end"
+      alignItems="center"
       borderRadius="5px"
       margin="30px"
     >
@@ -51,8 +54,17 @@ const Menu = ({ onCategoryChange }) => {
           {item.label}
         </Button>
       ))}
+
+      <Switch
+        id="theme"
+        colorScheme="teal"
+        size="lg"
+        onChange={toggleColorMode}
+        marginRight="10px"
+        marginLeft="10px"
+        style={{ transform: "scale(1.4)" }}
+      />
     </Box>
   );
 };
-
 export default Menu;

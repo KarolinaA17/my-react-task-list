@@ -42,7 +42,7 @@ export default function TaskList(props) {
     setIsEditing(false);
   };
 
-  if (props.category && category !== props.category) {
+  if (props.selectedCategory && category !== props.selectedCategory) {
     return null;
   }
 
