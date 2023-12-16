@@ -4,8 +4,6 @@ import TaskForm from "./forms/TaskForm";
 import { useTaskActions } from "./Hook/HookPersonalizado";
 
 export default function Task({ selectedCategory, onCategoryChange }) {
-  console.log("Selected Category in Task Component:", selectedCategory);
-
   const initialTasks = [
     {
       id: 1,
@@ -57,41 +55,31 @@ export default function Task({ selectedCategory, onCategoryChange }) {
     },
   ];
 
-  const { tasks, deleteTask, updateTask, createTask } =
-    useTaskActions(initialTasks);
+  const { tasks, deleteTask, updateTask, createTask, setCategory, category } =
+    useTaskActions(initialTasks, selectedCategory);
   const [newTaskCounter, setNewTaskCounter] = useState(initialTasks.length);
   const [filteredTasks, setFilteredTasks] = useState(tasks);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  useEffect(() => {
-    console.log("Setting filteredTasks:", tasks);
-    setFilteredTasks(
-      selectedCategory
-        ? tasks.filter(
-            (task) =>
-              task.Category &&
-              selectedCategory &&
-              task.Category.toLowerCase() === selectedCategory.toLowerCase()
-          )
-        : tasks
-    );
-  }, [selectedCategory, tasks]);
+  const [taskToUpdate, setTaskToUpdate] = useState(null);
 
   const handleCreateTask = (newTask) => {
     createTask({
       ...newTask,
-      id: newTaskCounter,
+      id: tasks.length + 1,
     });
-    setNewTaskCounter((prevCounter) => prevCounter + 1);
   };
 
-  const handleCategoryChange = (Category) => {
-    console.log(`Categoría seleccionada: ${Category}`);
-    onCategoryChange(category);
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    onCategoryChange(newCategory);
   };
+
+  useEffect(() => {
+    if (category !== selectedCategory) {
+      setFilteredTasks(
+        category ? tasks.filter((task) => task.Category === category) : tasks
+      );
+    }
+  }, [category, tasks]);
 
   return (
     <>
@@ -106,6 +94,7 @@ export default function Task({ selectedCategory, onCategoryChange }) {
           taskProp={task}
           deleteTask={deleteTask}
           updateTask={updateTask}
+          setTaskToUpdate={setTaskToUpdate}
           onCategoryChange={handleCategoryChange}
         />
       ))}

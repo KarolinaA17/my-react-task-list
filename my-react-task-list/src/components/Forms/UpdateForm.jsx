@@ -7,7 +7,7 @@ import "../../styles/stylesButtons/cancelForm.css";
 export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
   const [editedTask, setEditedTask] = useState({ ...taskToUpdate });
   const [taskPriority, setTaskPriority] = useState(editedTask.priority);
-
+  const [taskCategory, setTaskCategory] = useState(editedTask.Category);
   useEffect(() => {
     setEditedTask(taskToUpdate);
     setTaskPriority(taskToUpdate.priority);
@@ -32,10 +32,19 @@ export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
     const updatedTask = {
       ...editedTask,
       priority: taskPriority,
+      Category: taskCategory,
     };
 
     updateTask(updatedTask);
     onCancel();
+  };
+
+  const handleCategoryChange = (e) => {
+    if (e && e.target) {
+      setTaskCategory(e.target.value);
+    } else {
+      console.error("Error: No se pudo obtener el valor de la categoría");
+    }
   };
 
   return (
@@ -49,6 +58,9 @@ export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
         </label>
         <label className="labelUpdate" htmlFor="priority">
           Priority:
+        </label>
+        <label className="labelUpdate" htmlFor="Category">
+          Category:
         </label>
       </div>
       <div className="columnRightUpdate">
@@ -74,6 +86,15 @@ export default function UpdateForm({ taskToUpdate, updateTask, onCancel }) {
           <option value="High">High</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
+        </select>
+        <select
+          value={taskCategory}
+          onChange={(e) => handleCategoryChange(e)}
+          className="selectFieldUpdate"
+        >
+          <option value="Housework">Housework</option>
+          <option value="Job Task">Job Task</option>
+          <option value="Study Task">Study Task</option>
         </select>
       </div>
       <div className="formButtons">

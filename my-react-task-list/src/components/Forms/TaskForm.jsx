@@ -7,6 +7,7 @@ export default function TaskForm({ onCreateTask }) {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskPriority, setTaskPriority] = useState("Medium");
+  const [taskCategory, setTaskCategory] = useState("Housework");
   const [error, setError] = useState("");
 
   const handleCreateTask = () => {
@@ -39,6 +40,7 @@ export default function TaskForm({ onCreateTask }) {
           <label className="label">Title:</label>
           <label className="label">Description:</label>
           <label className="label">Priority:</label>
+          <label className="label">Category:</label>
         </div>
         <div className="formColumnRight">
           <div className="input">
@@ -69,6 +71,17 @@ export default function TaskForm({ onCreateTask }) {
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
+            </select>
+          </div>
+          <div>
+            <select
+              value={taskCategory}
+              onChange={(e) => setTaskCategory(e.target.value)}
+              className="selectField"
+            >
+              <option value="Housework">Housework</option>
+              <option value="Job Task">Job Task</option>
+              <option value="Study Task">Study Task</option>
             </select>
           </div>
         </div>
