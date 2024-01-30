@@ -26,5 +26,3 @@ dist-ssr
 # Node.js
 node_modules/
 public
-package-lock.json
-package.json
